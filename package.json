@@ -1,0 +1,46 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node .",
+    "inspect": "node --inspect .",
+    "inspect-watch": "nodemon --inspect .",
+    "inspect-brk": "node --inspect-brk .",
+    "inspect-cli": "node inspect .",
+    "watch": "nodemon .",
+    "test": "jest --runInBand --coverage",
+    "test-debug": "node --inspect-brk ./node_modules/jest/bin/jest.js --runInBand"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@supercharge/promise-pool": "^1.7.0",
+    "axios": "^0.21.1",
+    "bcryptjs": "^2.4.3",
+    "cheerio": "^1.0.0-rc.10",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
+    "lodash": "^4.17.21",
+    "mongoose": "^5.13.2",
+    "passport": "^0.4.1",
+    "passport-jwt": "^4.0.0",
+    "puppeteer": "^10.1.0"
+  },
+  "devDependencies": {
+    "@shelf/jest-mongodb": "^2.0.1",
+    "dotenv": "^10.0.0",
+    "eslint": "^7.31.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-import": "^2.23.4",
+    "eslint-plugin-prettier": "^3.4.0",
+    "jest": "^27.0.6",
+    "mock-fs": "^5.0.0",
+    "nodemon": "^2.0.12",
+    "prettier": "^2.3.2"
+  }
+}

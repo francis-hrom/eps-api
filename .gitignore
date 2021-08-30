@@ -1,0 +1,10 @@
+eps-workspace.code-workspace
+node_modules
+.env
+server/logic/TEST.js
+export-csv
+server/temp-test.js
+coverage
+get-targets-from-gsheet.js
+get-targets-from-gsheet.test.js
+zzz
