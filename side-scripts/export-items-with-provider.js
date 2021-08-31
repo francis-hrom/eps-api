@@ -37,7 +37,7 @@ const path = require('path');
       itemProviders.forEach((el) => {
         // write Row to CSV
         writeStream.write(
-          `${el.item},${el.item_clean},${el.provider},${el.provider_clean}\n`
+          `"${el.item}",${el.item_clean},"${el.provider}",${el.provider_clean}\n`
         );
       });
 

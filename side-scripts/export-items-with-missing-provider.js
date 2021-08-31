@@ -53,7 +53,7 @@ const { cleanTextRemoveSpaces } = require('../utils');
 
       itemsWithoutProvider.forEach((item) => {
         // write Row to CSV
-        writeStream.write(`${item},${cleanTextRemoveSpaces(item)}\n`);
+        writeStream.write(`"${item}",${cleanTextRemoveSpaces(item)}\n`);
       });
 
       writeStream.end(resolve);

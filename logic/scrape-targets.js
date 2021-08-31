@@ -5,7 +5,7 @@ const getAllTargetsWithoutTodaysRankings = require('./helpers/get-all-targets-wi
 
 module.exports = async (targets) => {
   const { results, errors } = await PromisePool.for(targets)
-    .withConcurrency(1)
+    .withConcurrency(10)
     .process(async (target) => {
       const items = await scrapeViaPuppeteer(target.url, target.selector);
 

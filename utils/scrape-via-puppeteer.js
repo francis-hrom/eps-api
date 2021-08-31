@@ -16,7 +16,7 @@ module.exports = (url, selector) => {
 
     try {
       browser = await puppeteer.launch({
-        headless: false,
+        headless: true,
         args: [`--window-size=${width},${height}`],
         defaultViewport: {
           width,
@@ -32,14 +32,20 @@ module.exports = (url, selector) => {
       // and then things can be removed in order to better match the use case scenario
       await page.goto(url, {
         timeout: 60000,
-        waitUntil: ['load', 'domcontentloaded', 'networkidle0', 'networkidle2'],
+        // waitUntil: ['load', 'domcontentloaded', 'networkidle0', 'networkidle2'],
       });
+
+      // ?waitUntil cause problems on certain websites, waitForSelector should be sufficient
+
+      //
+      // waitUntil all options: ['load', 'domcontentloaded', 'networkidle0', 'networkidle2'],
 
       // if previous waitUntil has not resulted in timeout, then everything should be loaded,
       // so waitForSelector should possible to lower to 1000ms
+      // waitForSelector option visible: true was causing problems on certain websites
       try {
         await page.waitForSelector(selector, {
-          visible: true,
+          // visible: true,
           timeout: 60000,
         });
       } catch (error) {
