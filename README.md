@@ -1,1 +1,1 @@
-# Element Position Scanner (EPS)
+# Element Position Scanner (EPS) API
