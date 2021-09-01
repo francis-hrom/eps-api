@@ -31,22 +31,21 @@ module.exports = (url, selector) => {
       // there might be situations when "waitUntil" will timeout, to be tested on the specific URLs
       // and then things can be removed in order to better match the use case scenario
       await page.goto(url, {
-        timeout: 60000,
-        // waitUntil: ['load', 'domcontentloaded', 'networkidle0', 'networkidle2'],
+        timeout: 30000,
+        // waitUntil: ['load'],
       });
 
       // ?waitUntil cause problems on certain websites, waitForSelector should be sufficient
-
       //
       // waitUntil all options: ['load', 'domcontentloaded', 'networkidle0', 'networkidle2'],
 
       // if previous waitUntil has not resulted in timeout, then everything should be loaded,
       // so waitForSelector should possible to lower to 1000ms
-      // waitForSelector option visible: true was causing problems on certain websites
+      // waitForSelector option visible: true was causing problems on certain websites, but it was needed on other
       try {
         await page.waitForSelector(selector, {
           // visible: true,
-          timeout: 60000,
+          timeout: 30000,
         });
       } catch (error) {
         throw new Error(

@@ -7,3 +7,4 @@ server/temp-test.js
 coverage
 zzz/
 side-scripts/import-items-from-providers-multiple-arrays_INPUT.js
+side-scripts/import-item-providers_INPUT.js

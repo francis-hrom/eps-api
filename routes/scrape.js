@@ -21,7 +21,11 @@ router.post('/find-selector', auth, async (req, res) => {
       res.json(selector);
     }
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    if (error.message.startsWith('net::ERR_ABORTED')) {
+      res.status(500).json('Invalid website URL.');
+    } else {
+      res.status(500).json('Server error. Please contact administrator.');
+    }
   }
 });
 
@@ -42,7 +46,13 @@ router.post('/get-rankings', auth, async (req, res) => {
       res.json(items);
     }
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    if (error.message.startsWith('net::ERR_ABORTED')) {
+      res.status(500).json('Invalid website URL.');
+    } else if (error.message.startsWith('Puppeteer timeout')) {
+      res.status(500).json('Invalid selector.');
+    } else {
+      res.status(500).json('Server error. Please contact administrator.');
+    }
   }
 });
 
