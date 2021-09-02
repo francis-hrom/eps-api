@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const addTarget = require('./add-target');
 
 const targetData = {
-  url: 'https://EXAMPLE.   com/test-sites////',
+  url: 'https://EXAMPLE.com/test-sites',
   selector: 'div>h1>span',
 };
 
