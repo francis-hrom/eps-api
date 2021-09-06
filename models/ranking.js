@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
-
-// TODO change item to title
+const normalize = require('normalize-mongoose');
 
 const rankingSchema = new mongoose.Schema({
   item: {
@@ -21,6 +20,8 @@ const rankingSchema = new mongoose.Schema({
     default: Date.now,
   },
 });
+
+rankingSchema.plugin(normalize);
 
 module.exports = mongoose.model('Ranking', rankingSchema);
 

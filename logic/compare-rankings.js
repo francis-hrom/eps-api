@@ -58,8 +58,11 @@ module.exports = (url, dateString1, dateString2) => {
       .concat(arr2.filter((x) => !arr1.includes(x)));
 
     console.log(
-      `There are difference (${differenceAmount}) in rankings for ${url} on ${dateString1} (${rankings1Length}) and ${dateString2} (${rankings2Length}) in following items: ${difference}.`
+      `There are difference (${differenceAmount}) in rankings for ${url} on ${dateString1} (${rankings1Length}) and ${dateString2} (${rankings2Length}).`
     );
-    return false;
+    // console.log(
+    //   `There are difference (${differenceAmount}) in rankings for ${url} on ${dateString1} (${rankings1Length}) and ${dateString2} (${rankings2Length}) in following items: ${difference}.`
+    // );
+    // return false;
   })();
 };

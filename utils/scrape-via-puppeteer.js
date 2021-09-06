@@ -36,12 +36,21 @@ module.exports = (url, selector) => {
       });
 
       // ?waitUntil cause problems on certain websites, waitForSelector should be sufficient
-      //
+      // WORKING: waitUntil: ['load'],
       // waitUntil all options: ['load', 'domcontentloaded', 'networkidle0', 'networkidle2'],
 
       // if previous waitUntil has not resulted in timeout, then everything should be loaded,
       // so waitForSelector should possible to lower to 1000ms
       // waitForSelector option visible: true was causing problems on certain websites, but it was needed on other
+
+      // ? increase to 10s
+      // even with 10s waitForTimeout around 10 sites are not working, same domain based
+      // waitForTimeout 20s seems to work for majority of websites except one (which was already visited several times, so captcha was there)
+      await page.waitForTimeout(20000);
+
+      // await page.waitForTimeout(5000);
+      // ? waitForTimeout is possibly universal solution for every website, however might slow down things overall
+
       try {
         await page.waitForSelector(selector, {
           // visible: true,

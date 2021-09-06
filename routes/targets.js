@@ -32,14 +32,14 @@ router.post('/reset-to-default-data', auth, async (req, res) => {
     const targets = await Target.insertMany(defaultTargets);
     res.json(targets);
   } catch (err) {
-    res.status(500).json({ message: err.message });
+    res.status(500).json('Server Error. Please contact the administrator.');
   }
 });
 
 // Get All
 router.get('/', auth, async (req, res) => {
   try {
-    const targets = await Target.find().lean();
+    const targets = await Target.find();
     res.json(targets);
   } catch (err) {
     res.status(500).json({ message: err.message });

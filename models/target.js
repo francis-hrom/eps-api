@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const normalize = require('normalize-mongoose');
 
 const targetSchema = new mongoose.Schema({
   url: {
@@ -10,5 +11,7 @@ const targetSchema = new mongoose.Schema({
     type: String,
   },
 });
+
+targetSchema.plugin(normalize);
 
 module.exports = mongoose.model('Target', targetSchema);

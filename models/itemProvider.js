@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const normalize = require('normalize-mongoose');
 
 const itemProviderSchema = new mongoose.Schema({
   item: {
@@ -23,5 +24,7 @@ const itemProviderSchema = new mongoose.Schema({
     required: true,
   },
 });
+
+itemProviderSchema.plugin(normalize);
 
 module.exports = mongoose.model('ItemProvider', itemProviderSchema);

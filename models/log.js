@@ -1,4 +1,5 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
+const normalize = require('normalize-mongoose');
 
 const logSchema = new mongoose.Schema({
   // Log
@@ -9,8 +10,8 @@ const logSchema = new mongoose.Schema({
   },
   level: {
     type: String,
-    enum: ["INFO", "WARN", "ERROR", "FATAL"],
-    default: "ERROR",
+    enum: ['INFO', 'WARN', 'ERROR', 'FATAL'],
+    default: 'ERROR',
   },
   message: {
     type: String,
@@ -21,4 +22,6 @@ const logSchema = new mongoose.Schema({
   },
 });
 
-module.exports = mongoose.model("Log", logSchema);
+logSchema.plugin(normalize);
+
+module.exports = mongoose.model('Log', logSchema);
