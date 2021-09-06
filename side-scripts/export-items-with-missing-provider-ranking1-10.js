@@ -27,13 +27,22 @@ const { cleanTextRemoveSpaces } = require('../utils');
       'itemsWithProvidersClean amount: ' + itemsWithProvidersClean.length
     );
 
-    const items = await Ranking.distinct('item').sort().lean();
+    const items = await Ranking.find({ rank: { $gte: 1, $lte: 10 } })
+      .distinct('item')
+      .sort()
+      .lean();
     console.log('items amount: ' + items.length);
 
     const itemsWithoutProvider = [];
+    const alreadyAddedClean = [];
     items.forEach((item) => {
-      if (!itemsWithProvidersClean.includes(cleanTextRemoveSpaces(item))) {
+      const itemClean = cleanTextRemoveSpaces(item);
+      if (
+        !itemsWithProvidersClean.includes(itemClean) &&
+        !alreadyAddedClean.includes(itemClean)
+      ) {
         itemsWithoutProvider.push(item);
+        alreadyAddedClean.push(itemClean);
       }
     });
 
@@ -42,7 +51,7 @@ const { cleanTextRemoveSpaces } = require('../utils');
     const file = path.join(
       process.cwd(),
       'export-csv',
-      `_export_items_with_missing_provider.csv`
+      `_export_items_with_missing_provider_with_ranking1-10.csv`
     );
 
     await new Promise((resolve, reject) => {

@@ -30,7 +30,7 @@ module.exports = (url, textArr) => {
       const page = await browser.newPage();
 
       await page.goto(url, {
-        timeout: 60000,
+        timeout: 30000,
         waitUntil: ['load', 'domcontentloaded', 'networkidle0', 'networkidle2'],
       });
 
