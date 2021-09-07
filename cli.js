@@ -1,10 +1,10 @@
 require('dotenv').config();
 const mongoose = require('mongoose');
-const exportUpToDateData = require('./logic/export-up-to-date-data');
-const addLog = require('./logic/helpers/add-log');
-const getAllTargetsWithoutTodaysRankings = require('./logic/helpers/get-all-targets-without-todays-result');
-const verifyTodaysRankings = require('./logic/verify-todays-rankings');
-const addNewTargetsFromGsheet = require('./logic/helpers/add-new-targets-from-gsheet');
+const exportUpToDateData = require('./services/export-up-to-date-data');
+const addLog = require('./services/helpers/add-log');
+const getAllTargetsWithoutTodaysRankings = require('./services/helpers/get-all-targets-without-todays-result');
+const verifyTodaysRankings = require('./services/verify-todays-rankings');
+const addNewTargetsFromGsheet = require('./services/helpers/add-new-targets-from-gsheet');
 
 const DATABASE_URL = process.env.DATABASE_URL3;
 
@@ -18,7 +18,7 @@ const DATABASE_URL = process.env.DATABASE_URL3;
     });
     console.log(`Connected to MongoDB ${DATABASE_URL}`);
 
-    await addNewTargetsFromGsheet();
+    // await addNewTargetsFromGsheet();
 
     let targets = await getAllTargetsWithoutTodaysRankings();
     console.log(`TargetsWithoutTodaysRankings: ${targets.length}`);

@@ -98,7 +98,7 @@ router.patch('/:id', getTarget, async (req, res) => {
 router.delete('/:id', getTarget, async (req, res) => {
   try {
     await res.target.remove();
-    res.json({ message: 'Deleted Target' });
+    res.json({ message: 'Target has been deleted.' });
   } catch (err) {
     res.status(500).json({ message: err.message });
   }

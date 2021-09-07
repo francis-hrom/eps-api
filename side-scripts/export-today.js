@@ -1,11 +1,11 @@
 require('dotenv').config();
 
 const mongoose = require('mongoose');
-const getAllTargetsWithoutTodaysResult = require('../logic/helpers/get-all-targets-without-todays-result');
-const getRankingsByDate = require('../logic/helpers/get-rankings-by-date');
+const getAllTargetsWithoutTodaysResult = require('../services/helpers/get-all-targets-without-todays-result');
+const getRankingsByDate = require('../services/helpers/get-rankings-by-date');
 const { today } = require('../utils');
-const exportRankingsToCsv = require('../logic/export-rankings-to-csv');
-const exportOverviewToCsv = require('../logic/export-overview-to-csv');
+const exportRankingsToCsv = require('../services/export-rankings-to-csv');
+const exportOverviewToCsv = require('../services/export-overview-to-csv');
 
 const DATABASE_URL = process.env.DATABASE_URL3;
 (async () => {

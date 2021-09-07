@@ -1,9 +1,9 @@
 require('dotenv').config();
 
 const mongoose = require('mongoose');
-const getAllRankings = require('../logic/helpers/get-all-rankings');
+const getAllRankings = require('../services/helpers/get-all-rankings');
 
-const exportRankingsToCsv = require('../logic/export-rankings-to-csv');
+const exportRankingsToCsv = require('../services/export-rankings-to-csv');
 
 const DATABASE_URL = process.env.DATABASE_URL3;
 (async () => {

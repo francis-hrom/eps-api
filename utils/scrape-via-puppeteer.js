@@ -46,7 +46,9 @@ module.exports = (url, selector) => {
       // ? increase to 10s
       // even with 10s waitForTimeout around 10 sites are not working, same domain based
       // waitForTimeout 20s seems to work for majority of websites except one (which was already visited several times, so captcha was there)
-      await page.waitForTimeout(20000);
+      // 20s all except 7
+      // 30 s all except 1
+      await page.waitForTimeout(30000);
 
       // await page.waitForTimeout(5000);
       // ? waitForTimeout is possibly universal solution for every website, however might slow down things overall

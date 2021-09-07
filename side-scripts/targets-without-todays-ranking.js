@@ -1,7 +1,7 @@
 require('dotenv').config();
 
 const mongoose = require('mongoose');
-const getAllTargetsWithoutTodaysResult = require('../logic/helpers/get-all-targets-without-todays-result');
+const getAllTargetsWithoutTodaysResult = require('../services/helpers/get-all-targets-without-todays-result');
 
 const {
   env: { DATABASE_URL },

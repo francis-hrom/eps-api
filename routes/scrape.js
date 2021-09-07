@@ -29,7 +29,7 @@ router.post('/find-selector', auth, async (req, res) => {
   }
 });
 
-router.post('/get-rankings', auth, async (req, res) => {
+router.post('/scan-rankings', auth, async (req, res) => {
   const { url, selector } = req.body;
   if (!url) {
     res.status(400).send('Url is required');
