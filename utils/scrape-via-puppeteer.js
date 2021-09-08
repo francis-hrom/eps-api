@@ -15,14 +15,25 @@ module.exports = (url, selector) => {
     const height = 1048;
 
     try {
+      // heroku
       browser = await puppeteer.launch({
         headless: true,
-        args: [`--window-size=${width},${height}`],
-        defaultViewport: {
-          width,
-          height,
-        },
+        args: ['--no-sandbox'],
+        // defaultViewport: {
+        //   width,
+        //   height,
+        // },
       });
+
+      // for further testing
+      // browser = await puppeteer.launch({
+      //   headless: true,
+      //   args: [`--window-size=${width},${height}`],
+      //   defaultViewport: {
+      //     width,
+      //     height,
+      //   },
+      // });
 
       const page = await browser.newPage();
 
