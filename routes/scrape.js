@@ -21,6 +21,8 @@ router.post('/find-selector', auth, async (req, res) => {
       res.json(selector);
     }
   } catch (error) {
+    console.error(error.message);
+
     if (error.message.startsWith('net::ERR_ABORTED')) {
       res.status(500).json('Invalid website URL.');
     } else {
@@ -46,6 +48,8 @@ router.post('/scan-rankings', auth, async (req, res) => {
       res.json(items);
     }
   } catch (error) {
+    console.error(error.message);
+
     if (error.message.startsWith('net::ERR_ABORTED')) {
       res.status(500).json('Invalid website URL.');
     } else if (error.message.startsWith('Puppeteer timeout')) {
