@@ -26,32 +26,17 @@ module.exports = (url, selector) => {
 
       const page = await browser.newPage();
 
-      //await page.goto(url);
-
-      // there might be situations when "waitUntil" will timeout, to be tested on the specific URLs
-      // and then things can be removed in order to better match the use case scenario
       await page.goto(url, {
         timeout: 30000,
-        // waitUntil: ['load'],
+        waitUntil: ['load'],
       });
-
-      // ?waitUntil cause problems on certain websites, waitForSelector should be sufficient
-      // WORKING: waitUntil: ['load'],
+      // waitUntil cause problems on certain websites
       // waitUntil all options: ['load', 'domcontentloaded', 'networkidle0', 'networkidle2'],
 
-      // if previous waitUntil has not resulted in timeout, then everything should be loaded,
-      // so waitForSelector should possible to lower to 1000ms
-      // waitForSelector option visible: true was causing problems on certain websites, but it was needed on other
-
-      // ? increase to 10s
-      // even with 10s waitForTimeout around 10 sites are not working, same domain based
-      // waitForTimeout 20s seems to work for majority of websites except one (which was already visited several times, so captcha was there)
+      // await page.waitForTimeout(30000);
+      // waitForTimeout seem as the most universal solution for every website, however this would slow down things overall
       // 20s all except 7
       // 30 s all except 1
-      await page.waitForTimeout(30000);
-
-      // await page.waitForTimeout(5000);
-      // ? waitForTimeout is possibly universal solution for every website, however might slow down things overall
 
       try {
         await page.waitForSelector(selector, {
