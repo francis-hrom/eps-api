@@ -22,7 +22,7 @@ module.exports = (dateString) => {
       .sort({ item: 'ascending' })
       .lean();
 
-    rankings.forEach((ranking) => cleanup(ranking));
+    // rankings.forEach((ranking) => cleanup(ranking));
 
     return rankings;
   })();

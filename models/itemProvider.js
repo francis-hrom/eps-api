@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const normalize = require('normalize-mongoose');
 
+// just for quick prototyping, to be optimized
 const itemProviderSchema = new mongoose.Schema({
   item: {
     type: String,

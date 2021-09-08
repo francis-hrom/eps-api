@@ -1,4 +1,4 @@
-// ? hwo to run all of this inside puppeteer browser context
+// code backup in structural form
 
 function findNodesByText(text) {
   if (typeof text !== 'string') throw new Error(`${text} is not a string.`);

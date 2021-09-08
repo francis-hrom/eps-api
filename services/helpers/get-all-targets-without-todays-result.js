@@ -13,7 +13,7 @@ module.exports = async () => {
     url: { $not: { $in: [...urlsWithTodaysRanking] } },
   }).lean();
 
-  targets.forEach((target) => cleanup(target));
+  // targets.forEach((target) => cleanup(target));
 
   return targets;
 };

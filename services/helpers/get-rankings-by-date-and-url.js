@@ -24,7 +24,7 @@ module.exports = (dateString, url) => {
       url,
     }).lean();
 
-    rankings.forEach((ranking) => cleanup(ranking));
+    // rankings.forEach((ranking) => cleanup(ranking));
 
     return rankings;
   })();

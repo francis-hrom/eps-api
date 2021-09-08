@@ -16,7 +16,7 @@ describe('cleanup.js', () => {
     cleanup(data);
 
     expect(data).toBeDefined();
-    // expect(data.id).toBeDefined();
+    expect(data.id).toBeDefined();
     expect(data._id).not.toBeDefined();
   });
 });
