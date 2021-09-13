@@ -21,6 +21,8 @@ module.exports = (url, selector) => {
         args: ['--no-sandbox'],
       });
 
+      const page = await browser.newPage();
+
       await page.goto(url, {
         timeout: 30000,
         waitUntil: ['load'],
