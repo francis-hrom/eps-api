@@ -9,6 +9,7 @@ const addNewTargetsFromGsheet = require('./services/helpers/add-new-targets-from
 const DATABASE_URL = process.env.DATABASE_URL3;
 
 (async () => {
+  console.time('executionTime');
   try {
     await mongoose.connect(DATABASE_URL, {
       useNewUrlParser: true,
@@ -54,5 +55,6 @@ const DATABASE_URL = process.env.DATABASE_URL3;
   } finally {
     await mongoose.connection.close();
     console.log('Disconnected from MongoDB');
+    console.timeEnd('executionTime');
   }
 })();
