@@ -8,10 +8,6 @@ const auth = require('../middleware/auth');
 router.post('/reset-to-default-data', auth, async (req, res) => {
   const defaultTargets = [
     {
-      url: 'https://webscraper.io/test-sites/e-commerce/allinone/phones/touch',
-      selector: 'html>body>div>div>div>div>div>div>div>div>h4>a:nth-of-type(1)',
-    },
-    {
       url: 'https://geizhals.eu/?m=5',
       selector:
         'html>body>div>div>main>div>div>div>ol>li>div>div>div>a:nth-of-type(1)',
