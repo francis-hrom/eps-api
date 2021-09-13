@@ -15,15 +15,27 @@ module.exports = (url, selector) => {
     const height = 1048;
 
     try {
-      // heroku
+      // HEROKU
       browser = await puppeteer.launch({
         headless: true,
         args: ['--no-sandbox'],
-        // defaultViewport: {
-        //   width,
-        //   height,
-        // },
       });
+
+      await page.goto(url, {
+        timeout: 30000,
+        waitUntil: ['load'],
+      });
+
+      try {
+        await page.waitForSelector(selector, {
+          visible: true,
+          timeout: 30000,
+        });
+      } catch (error) {
+        throw new Error(
+          `Puppeteer timeout at url: ${url}, selector:${selector} Error message: ${error}`
+        );
+      }
 
       // for further testing
       // browser = await puppeteer.launch({
@@ -35,30 +47,36 @@ module.exports = (url, selector) => {
       //   },
       // });
 
-      const page = await browser.newPage();
+      // const page = await browser.newPage();
 
-      await page.goto(url, {
-        timeout: 30000,
-        waitUntil: ['load'],
-      });
-      // waitUntil cause problems on certain websites
-      // waitUntil all options: ['load', 'domcontentloaded', 'networkidle0', 'networkidle2'],
+      // await page.goto(url, {
+      //   timeout: 30000,
+      //   // waitUntil: ['load'],
+      // });
+      // // waitUntil cause problems on certain websites
+      // // waitUntil all options: ['load', 'domcontentloaded', 'networkidle0', 'networkidle2'],
 
       // await page.waitForTimeout(30000);
-      // waitForTimeout seem as the most universal solution for every website, however this would slow down things overall
-      // 20s all except 7
-      // 30 s all except 1
+      // // waitForTimeout seem as the most universal solution for every website, however this would slow down things overall
+      // // 20s all except 7
+      // // 30s all except 1
+      // // 15s all except 2
 
-      try {
-        await page.waitForSelector(selector, {
-          // visible: true,
-          timeout: 30000,
-        });
-      } catch (error) {
-        throw new Error(
-          `Puppeteer timeout at url: ${url}, selector:${selector} Error message: ${error}`
-        );
-      }
+      // try {
+      //   await page.waitForSelector(selector, {
+      //     // visible: true,
+      //     timeout: 30000,
+      //   });
+      // } catch (error) {
+      //   throw new Error(
+      //     `Puppeteer timeout at url: ${url}, selector:${selector} Error message: ${error}`
+      //   );
+      // }
+
+      // waitForSelector visible: true cause around 34 pages not to throw error
+      // ? every target should have custom config
+
+      // with PromisePool.withConcurrency(1) it worked for all remaining pages
 
       const items = await page.evaluate((selector) => {
         const elements = document.querySelectorAll(selector);
