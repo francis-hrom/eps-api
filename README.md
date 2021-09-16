@@ -3,6 +3,8 @@
 Fully functional demo presentation is available at https://eps-app.com  
 (with already preloaded test account at login)
 
+[![EPS Explainer Video](docs/EPS_youtube_screenshot.jpg)](https://www.youtube.com/embed/L238jRLsGqI?rel=0)
+
 EPS (Element Position Scanner) is a tool for businesses to efficiently monitor positions (rankings) of their products (and their competitors) on other websites.
 
 Example use case scenarios:
@@ -48,7 +50,7 @@ EPS APP1 - TypeScript implementation with simple visuals
 EPS APP2 - JavaScript implementation with template visuals
 
 - Code: https://github.com/francis-hrom/eps-app2
-- Online demo: https://eps-app2.surge.sh
+- Online demo: https://eps-app.com
 
 Features list
 
