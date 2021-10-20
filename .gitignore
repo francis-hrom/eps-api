@@ -11,3 +11,5 @@ side-scripts/import-item-providers_INPUT.js
 side-scripts/import-itemProviders-mix_INPUT.js
 side-scripts/import-itemProviders-arrays_INPUT.js
 side-scripts/word-blacklist.js
+services/_priority-targets.js
+side-scripts/TEST.js

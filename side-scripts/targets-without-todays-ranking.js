@@ -3,9 +3,7 @@ require('dotenv').config();
 const mongoose = require('mongoose');
 const getAllTargetsWithoutTodaysResult = require('../services/helpers/get-all-targets-without-todays-result');
 
-const {
-  env: { DATABASE_URL },
-} = process;
+const DATABASE_URL = process.env.DATABASE_URL3;
 (async () => {
   try {
     await mongoose.connect(DATABASE_URL, {
