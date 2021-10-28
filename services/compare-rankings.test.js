@@ -2,64 +2,108 @@ const mongoose = require('mongoose');
 const compareRankings = require('./compare-rankings');
 const Ranking = require('../models/ranking');
 
-const urls = [
-  'https://example-null.com/',
-  'https://example-true.com/',
-  'https://example-false.com/',
-];
-const dateString1 = '2021-01-20';
-const dateString2 = '2021-01-21';
+const urls = ['https://example-null.com', 'https://example-with-number.com'];
+const dateString1 = '2021-01-21';
+const dateString2 = '2021-01-20';
 
-const date1 = new Date('2021-01-20');
-const date2 = new Date('2021-01-21');
+const date1 = new Date(dateString1);
+const date2 = new Date(dateString2);
 
 const rankingsData = [
   {
-    item: 'Item for https://example-null.com/',
-    url: 'https://example-null.com/',
+    item: 'Item for https://example-null.com',
+    url: 'https://example-null.com',
     rank: 1,
     date: date1,
   },
   {
     item: 'Item1',
-    url: 'https://example-true.com/',
+    url: 'https://example-with-number.com',
     rank: 1,
     date: date1,
   },
   {
     item: 'Item2',
     rank: 2,
-    url: 'https://example-true.com/',
+    url: 'https://example-with-number.com',
     date: date1,
   },
   {
+    item: 'Item1',
+    url: 'https://example-with-number.com',
+    rank: 1,
+    date: date2,
+  },
+  {
+    item: 'Item2',
+    rank: 2,
+    url: 'https://example-with-number.com',
+    date: date2,
+  },
+  {
     item: 'Item3',
-    url: 'https://example-true.com/',
+    url: 'https://example-with-number.com',
     rank: 3,
     date: date2,
   },
   {
     item: 'Item4',
     rank: 4,
-    url: 'https://example-true.com/',
+    url: 'https://example-with-number.com',
     date: date2,
   },
   {
-    item: 'Item1',
-    url: 'https://example-false.com/',
-    rank: 1,
-    date: date1,
+    item: 'Item5',
+    url: 'https://example-with-number.com',
+    rank: 5,
+    date: date2,
   },
   {
-    item: 'Item2',
-    rank: 2,
-    url: 'https://example-false.com/',
-    date: date1,
+    item: 'Item6',
+    rank: 6,
+    url: 'https://example-with-number.com',
+    date: date2,
   },
   {
-    item: 'Item3',
-    url: 'https://example-false.com/',
-    rank: 3,
+    item: 'Item7',
+    url: 'https://example-with-number.com',
+    rank: 7,
+    date: date2,
+  },
+  {
+    item: 'Item8',
+    rank: 8,
+    url: 'https://example-with-number.com',
+    date: date2,
+  },
+  {
+    item: 'Item9',
+    url: 'https://example-with-number.com',
+    rank: 9,
+    date: date2,
+  },
+  {
+    item: 'Item10',
+    rank: 10,
+    url: 'https://example-with-number.com',
+    date: date2,
+  },
+  {
+    item: 'Item11',
+    url: 'https://example-with-number.com',
+    rank: 11,
+    date: date2,
+  },
+  {
+    item: 'Item12',
+    rank: 12,
+    url: 'https://example-with-number.com',
+    date: date2,
+  },
+  {
+    item: 'Item13',
+    rank: 13,
+    url: 'https://example-with-number.com',
     date: date2,
   },
 ];
@@ -102,7 +146,7 @@ describe('compare-rankings.js', () => {
     }).toThrow(TypeError);
   });
 
-  test('return all rankings', async () => {
+  test('should return correct comparison result', async () => {
     const comparison1 = await compareRankings(
       urls[0],
       dateString1,
@@ -113,15 +157,9 @@ describe('compare-rankings.js', () => {
       dateString1,
       dateString2
     );
-    const comparison3 = await compareRankings(
-      urls[2],
-      dateString1,
-      dateString2
-    );
 
     expect(comparison1).toBe(null);
-    expect(comparison2).toBe(true);
-    expect(comparison3).toBe(false);
+    expect(comparison2).toBe(11);
   });
 
   afterAll(async () => {

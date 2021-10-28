@@ -47,19 +47,29 @@ module.exports = (url, dateString1, dateString2) => {
       return null;
     }
 
-    if (rankings1Length === rankings2Length) return true;
+    if (rankings1Length === rankings2Length) return null;
 
-    const differenceAmount = Math.abs(rankings1Length - rankings2Length);
+    if (
+      rankings1Length < rankings2Length &&
+      rankings1Length < 100 &&
+      rankings2Length - rankings1Length > 10
+    ) {
+      return rankings2Length - rankings1Length;
+    } else {
+      return null;
+    }
 
-    const arr1 = rankings1.map(({ item }) => item);
-    const arr2 = rankings2.map(({ item }) => item);
-    const difference = arr1
-      .filter((x) => !arr2.includes(x))
-      .concat(arr2.filter((x) => !arr1.includes(x)));
+    // const differenceAmount = Math.abs(rankings1Length - rankings2Length);
 
-    console.log(
-      `There are difference (${differenceAmount}) in rankings for ${url} on ${dateString1} (${rankings1Length}) and ${dateString2} (${rankings2Length}).`
-    );
+    // const arr1 = rankings1.map(({ item }) => item);
+    // const arr2 = rankings2.map(({ item }) => item);
+    // const difference = arr1
+    //   .filter((x) => !arr2.includes(x))
+    //   .concat(arr2.filter((x) => !arr1.includes(x)));
+
+    // console.log(
+    //   `There are difference (${differenceAmount}) in rankings for ${url} on ${dateString1} (${rankings1Length}) and ${dateString2} (${rankings2Length}).`
+    // );
     // console.log(
     //   `There are difference (${differenceAmount}) in rankings for ${url} on ${dateString1} (${rankings1Length}) and ${dateString2} (${rankings2Length}) in following items: ${difference}.`
     // );
