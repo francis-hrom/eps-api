@@ -5,7 +5,6 @@ const addLog = require('./services/helpers/add-log');
 const getAllTargetsWithoutTodaysRankings = require('./services/helpers/get-all-targets-without-todays-result');
 const verifyTodaysRankings = require('./services/verify-todays-rankings');
 const addNewTargetsFromGsheet = require('./services/helpers/add-new-targets-from-gsheet');
-const scrapePriorityTargets = require('./services/scrape-priority-targets');
 const sendEmail = require('./services/send-email');
 
 const DATABASE_URL = process.env.DATABASE_URL3;
@@ -38,6 +37,7 @@ const DATABASE_URL = process.env.DATABASE_URL3;
       );
       await exportUpToDateData();
       console.log('Export to CSV complete.');
+
       targets = await getAllTargetsWithoutTodaysRankings();
       console.log(
         `TargetsWithoutTodaysRankings (second check): ${targets.length}`
@@ -48,15 +48,31 @@ const DATABASE_URL = process.env.DATABASE_URL3;
       );
     }
 
-    // await verifyTodaysRankings();
-    // console.log('Verification of todays rankings is complete.');
+    const verificationResults = await verifyTodaysRankings();
+    if (verificationResults.length) {
+      await sendEmail(
+        'EPS - ISSUES IN VERIFY RANKINGS',
+        `verifyTodaysRankings issues: ${JSON.stringify(verificationResults)}`
+      );
 
-    await sendEmail('SUCCESS - EPS', 'EPS completed task without error.');
-    console.log('DONE WITHOUT ERRORS.');
+      console.log('VERIFY RANKINGS ISSUES:');
+      verificationResults.forEach((result) => console.log(result));
+
+      console.log('DONE WITH ISSUES IN VERIFY RANKINGS.');
+    } else {
+      await sendEmail(
+        'EPS - SUCCESS',
+        'EPS completed task without an error or verification issue.'
+      );
+
+      console.log('DONE WITHOUT ERRORS.');
+    }
   } catch (error) {
     console.log('<<< --- ERROR! --- >>>');
     console.error(error);
-    await sendEmail('ERROR - EPS', `${error}`);
+
+    await sendEmail('EPS - ERROR', `${error}`);
+
     try {
       await addLog('ERROR', error);
     } catch (error) {
@@ -65,6 +81,7 @@ const DATABASE_URL = process.env.DATABASE_URL3;
   } finally {
     await mongoose.connection.close();
     console.log('Disconnected from MongoDB');
+
     console.log('Finished: ' + new Date());
     console.timeEnd('executionTime');
   }

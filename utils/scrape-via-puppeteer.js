@@ -1,4 +1,6 @@
-const puppeteer = require('puppeteer');
+//const puppeteer = require('puppeteer');
+const puppeteer = require('puppeteer-extra');
+const StealthPlugin = require('puppeteer-extra-plugin-stealth');
 
 module.exports = (url, selector) => {
   if (typeof url !== 'string') {
@@ -40,6 +42,8 @@ module.exports = (url, selector) => {
       // }
 
       // for further testing
+      puppeteer.use(StealthPlugin());
+
       browser = await puppeteer.launch({
         headless: true,
         args: [`--window-size=${width},${height}`],
@@ -56,20 +60,20 @@ module.exports = (url, selector) => {
       // ? puppeteer-extra with stealth mode
       // EXPERIMENT
 
-      await page.setExtraHTTPHeaders({
-        'Accept-Language': 'en-GB,en-US;q=0.9,en;q=0.8',
-      });
-
-      await page.setUserAgent(
-        'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.181 Safari/537.36'
-      );
-
       // await page.setExtraHTTPHeaders({
-      //   'Accept-Language': 'en-US,en;q=0.9',
+      //   'Accept-Language': 'en-GB,en-US;q=0.9,en;q=0.8',
       // });
+
       // await page.setUserAgent(
       //   'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.181 Safari/537.36'
       // );
+
+      await page.setExtraHTTPHeaders({
+        'Accept-Language': 'en-US,en;q=0.9',
+      });
+      await page.setUserAgent(
+        'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.181 Safari/537.36'
+      );
 
       // end of EXPERIMENT
 
