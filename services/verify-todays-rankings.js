@@ -7,9 +7,16 @@ module.exports = async () => {
   const todayVal = today();
   const yesterday = otherDate(todayVal, -1);
 
+  const results = [];
   await Promise.all(
-    urls.map(async (url) => await compareRankings(url, todayVal, yesterday))
+    urls.map(async (url) => {
+      const result = await compareRankings(url, todayVal, yesterday);
+
+      if (result) {
+        results.push({ url, difference: result });
+      }
+    })
   );
 
-  return true;
+  return results;
 };
