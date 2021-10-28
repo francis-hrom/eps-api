@@ -40,8 +40,8 @@ describe('get-all-urls-from-all-targets.js', () => {
 
     expect(urls).toBeDefined();
     expect(urls.length).toBe(2);
-    expect(urls[0]).toBe(targetsData[0].url);
-    expect(urls[1]).toBe(targetsData[1].url);
+    expect(urls[0]).toBe(targetsData[1].url);
+    expect(urls[1]).toBe(targetsData[0].url);
   });
 
   afterAll(async () => {

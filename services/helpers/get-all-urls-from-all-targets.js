@@ -1,10 +1,11 @@
 const Target = require('../../models/target');
 
 module.exports = async () => {
-  const targets = await Target.find({}).lean();
-  const urls = new Set();
+  const urls = await Target.find({}).distinct('url').lean();
 
-  targets.forEach((target) => urls.add(target.url));
+  if (urls.length === 0) {
+    throw new Error('No targets found.');
+  }
 
-  return [...urls];
+  return urls;
 };
