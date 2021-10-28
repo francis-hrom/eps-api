@@ -3,7 +3,14 @@ const sgMail = require('@sendgrid/mail');
 const emailAddress = process.env.SENDGRID_EMAIL_ADDRESS;
 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
-module.exports = async (subject, body) => {
+module.exports = (subject, body) => {
+  if (!subject) throw new Error('Subject is missing.');
+  if (typeof subject !== 'string')
+    throw new TypeError(`${subject} is not a string.`);
+
+  if (!body) throw new Error('Body is missing.');
+  if (typeof body !== 'string') throw new TypeError(`${body} is not a string.`);
+
   const email = {
     to: emailAddress,
     from: emailAddress,
@@ -11,5 +18,8 @@ module.exports = async (subject, body) => {
     text: body,
     html: body,
   };
-  return sgMail.send(email);
+
+  return (async () => {
+    await sgMail.send(email);
+  })();
 };
