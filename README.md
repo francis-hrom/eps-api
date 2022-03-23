@@ -44,12 +44,12 @@ Fully functional demo presentation is available at https://eps-app.com
 
 EPS APP1 - TypeScript implementation with simple visuals
 
-- Code: https://github.com/francis-hrom/eps-app1
+- Code: https://github.com/frank-hrom/eps-app1
 - Online demo: https://eps-app1.surge.sh
 
 EPS APP2 - JavaScript implementation with template visuals
 
-- Code: https://github.com/francis-hrom/eps-app2
+- Code: https://github.com/frank-hrom/eps-app2
 - Online demo: https://eps-app.com
 
 Features list
